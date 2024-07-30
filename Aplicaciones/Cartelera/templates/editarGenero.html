@@ -1,0 +1,31 @@
+{% extends "./plantilla.html" %}
+{% block body%}
+<h1>EDITAR GENERO</h1>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <form action="{% url 'procesarActualizacionGenero' %}" method="post" enctype="multipart/form-data" >
+                {% csrf_token %}
+                <input type="hidden" name="id" value="{{generoEditar.id_genero}}">
+                <label for=""><b>Nombre:</b></label>
+                <input type="text" name="nombre" class="form-control"
+                value="{{generoEditar.nombre_genero}}"
+                id="nombre" placeholder="Ingrese el nombre del genero">
+                <label for=""><b>Fotografia</b></label>
+                <input type="file", name="foto" id="foto" accept="image/*" required class="form-control">
+                <label for=""><b>Descripción:</b></label>
+                <textarea name="descripcion" id="descripcion"
+                    class="form-control" rows="3"
+                    placeholder="Ingrese la descripcion"
+                >{{generoEditar.descripcion_genero}}</textarea>
+                <br>
+                <button  type="submit" class="btn btn-warning">
+                    Actualizar</button>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="{% url 'listadoPaises' %}">Cancelar</a>
+            </form>
+        </div>
+    </div>
+</div>
+<br>
+{% endblock %}

@@ -1,0 +1,58 @@
+{% extends "./plantilla.html" %}
+{% load static %}
+{% block body%}
+<img src="{% static 'img/2.png' %}" alt="Not found">
+
+<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel" style="width: 100%;">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img style="height: 900px;" src="https://quatrefilms.com/wp-content/uploads/2022/06/cine.jpg" class="d-block w-100" alt="...">
+      </div>
+      <div class="carousel-item">
+        <img style="height: 900px;" src="https://trestristescriticos.com/wp-content/uploads/2021/07/telefono-gratuito-cinesur.jpg" class="d-block w-100" alt="...">
+      </div>
+      <div class="carousel-item">
+        <img  style="height: 900px;" src="https://www.afquito.org.ec/wp-content/uploads/2022/09/cine-5-e1585960007845.jpeg" class="d-block w-100" alt="...">
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+<h3>
+  
+    <div class="row" style="text-align: center; background-color: black; color: white;">
+      <div class="col-md-6">
+        <h3 style="color: white;">Misión</h3>
+        <p>
+          Brindar entretenimiento de alta calidad, ofreciendo una amplia variedad de películas y eventos
+           especiales en un entorno cómodo y moderno. Nos esforzamos por crear una experiencia única para 
+           nuestros clientes, promoviendo la cultura cinematográfica y apoyando iniciativas locales, todo mientras 
+           mantenemos altos estándares de sostenibilidad y responsabilidad social.
+        </p>
+      </div>
+      <div class="col-md-6">
+        <h3 style="color: white;">Visión</h3>
+        <p>
+          Ser el cine preferido por las familias y los amantes del cine, reconocido por su innovación, 
+          excelencia en el servicio y compromiso con la comunidad,
+          proporcionando experiencias cinematográficas inolvidables.
+        </p>
+      </div>
+      <br><br>
+    </div>
+
+</h3>
+
+
+{% endblock %}

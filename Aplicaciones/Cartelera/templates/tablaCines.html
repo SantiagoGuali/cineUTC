@@ -1,0 +1,38 @@
+{% block body %}
+<div class="container">
+    <table class="table table-bordered table-striped table-hover" id="tbl-generos">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>NOMBRE</th>
+                <th>DIRECCIÓN</th>
+                <th>TÉLEFONO</th>
+                <th>ACCIONES</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+           {% for cineTemporal in cines %}
+                <tr>
+                    <td>{{cineTemporal.id}}</td>
+                    <td>{{cineTemporal.nombre}}</td>
+                    <td>{{cineTemporal.direccion}}</td>
+                    <td>{{cineTemporal.telefono}}</td>
+                    <td>
+                        <a href="#" class="btn btn-success">Editar</a>
+                        <a href="#" onclick="return confirm('Estas seguro de eliminarlo')" class="btn btn-danger">Eliminar</a>
+                        
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    
+    
+    </table>
+  </div>
+
+  <script>
+    const table = new DataTable('#tbl-generos');
+  </script>
+
+  {% endblock %}

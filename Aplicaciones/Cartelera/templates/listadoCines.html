@@ -1,0 +1,134 @@
+{% extends "./plantilla.html" %}
+{% load static %}
+{% block body%}
+<div class="container">
+    <h1 class="text-center">Gestion de cines con peticiones asíncronas</h1>
+
+<div class="row">
+    <div class="col-md-12 text-end">
+        <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fas fa-plus"></i> <b>Agregar cine</b></button>
+    </div>
+    <br>
+
+    <div class="col-md-12" id="contenedor-cines"></div>
+</div>
+</div>
+<a href="{% url 'exportCinesPDF' %}">
+    <button class="btn btn-outline-success">Exportar a PDF</button>
+</a>
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Nuevo cine</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form action="#"  id="formAddCine">
+                <label for=""><b>Nombre:</b></label>
+                <input type="text" placeholder="Ingrese el nombre del cine" name="nombre" id="nombre"  class="form-control">
+                <br>
+                <label for=""><b>Dirección:</b></label>
+                <input type="text" placeholder="Ingrese la dirección" id="direccion" name="direccion" class="form-control">
+                <br>
+                <label for=""><b>Télefono:</b></label>
+                <input type="text" placeholder="Ingrese el télefono" id="telefono" name="telefono" class="form-control">
+                <br><br>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-outline-primary">  <i class="fas fa-save"></i> Guardar</button>
+                    <button  type="button" class="btn btn-danger " data-bs-dismiss="modal"><i class="fas fa-times"></i> Cerrar</button>
+                </div>
+              </form>
+        </div>
+
+      </div>
+    </div>
+  </div>
+ 
+  <br><br>
+<br><br><br><br><br><br>
+ 
+{% include 'tablaCines.html' %} 
+
+<script>
+    function cargarCines()
+    {
+        $("#contenedor-cines").load('{% url "tablaCines" %}')
+    }
+    cargarCines();
+    $("#formAddCine").validate({
+        rules:{
+            nombre:{
+                required:true
+            },
+            direccion:{
+                required:true
+            },
+            telefono:{
+                required:true,
+                minlength:10,
+                maxlength:10
+                
+            }
+        },
+        messages:{
+            nombre:{
+                required:"Llene el campo nombre"
+            },
+            direccion:{
+                required:"Llene el campo direccion"
+            },
+            telefono:{
+                required:"Llene el campo porfavor",
+                minlength:"Porfavor ingrese mas de 3 caracteres",
+                maxlength:"Porfavor no pasarse de 10 caracteres"
+            }
+        },
+//funcion de guardado con ajax
+
+
+        submitHandler:function(formulario){
+            $.ajax({
+                url:'{% url "addCine" %}',
+                type: 'post',
+                data:$(formulario).serialize(),
+
+                //mensajes de confirmacion
+                success:function(data)
+                {
+                    if(data.estado)
+                    {
+                        Swal.fire({
+                            title: "CONFIRMACIÓN",
+                            text: data.mensaje,
+                            icon: 'success'
+                        });
+                        //cerrar modal
+                        $('#exampleModal').modal('hide');
+                        //reiniciar 
+                        $(formulario)[0].reset();
+                    
+
+                    }else
+                    {
+                        alert("Error al guardar")
+                    }
+                },
+                error:function(data)
+                {
+                    console.log(data);
+                }
+            });
+        }
+    });
+
+    function cargarCines(){
+        $("#contenedor-cine").load('{% url "tablaCines" %}');
+    }
+</script>
+
+
+
+{% endblock %}
