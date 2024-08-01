@@ -1,7 +1,7 @@
 databases:
   - name: cineUTCserver
     plan: free
-    databaseName: dbcineUTC
+    databaseName: dbcineutc
     user: santiago
 
 services:
